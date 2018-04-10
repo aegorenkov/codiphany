@@ -2,13 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 
 const config = {
-  entry: './client/index.js',
+  mode: 'development',
+  entry: './src/client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'webpack-bundle.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -19,7 +20,7 @@ const config = {
     ]
   },
   stats: { colors: true },
-  devtools: 'source-map'
+  devtool: 'source-map'
 }
 
 module.exports = config;

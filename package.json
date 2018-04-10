@@ -2,8 +2,9 @@
   "name": "codiphany",
   "version": "0.0.0",
   "description": "Tech solution micro-blogs.",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
+    "start": "export NODE_ENV=development; nodemon server/server.js",
     "test": "npm test",
     "webpack": "webpack"
   },
@@ -22,8 +23,10 @@
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "nodemon": "^1.17.3",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "webpack": "^4.5.0"
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   }
 }
