@@ -6,7 +6,7 @@
   "scripts": {
     "start": "export NODE_ENV=development; nodemon server/server.js",
     "test": "npm test",
-    "webpack": "webpack"
+    "webpack": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
