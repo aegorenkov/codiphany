@@ -27,7 +27,7 @@ class SolutionPage extends Component {
         <h1>{title}</h1>
         <p>{description}</p>
         <p>{resources}</p>
-        <p>{code}</p>
+        <p dangerouslySetInnerHTML={{__html:code}} ></p>
       </div>
     )
   }

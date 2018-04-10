@@ -46,7 +46,7 @@ class EditPage extends Component {
     putSolution(this.props.match.params.solutionId, updateObj);
   }
   updateCode(e) {
-    const updateObj = {code: e.target.innerText};
+    const updateObj = {code: e.target.innerHTML};
     this.setState(updateObj);
     putSolution(this.props.match.params.solutionId, updateObj);
   }
@@ -57,7 +57,7 @@ class EditPage extends Component {
         <h1 contentEditable="true" onBlur={this.updateTitle}>{title}</h1>
         <p contentEditable="true" onBlur={this.updateDescription}>{description}</p>
         <p contentEditable="true" onBlur={this.updateResources}>{resources}</p>
-        <p contentEditable="true" onBlur={this.updateCode}>{code}</p>
+        <p contentEditable="true" onBlur={this.updateCode} dangerouslySetInnerHTML={{__html:code}} ></p>
       </div>
     )
   }
