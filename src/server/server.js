@@ -36,6 +36,14 @@ app.get('/:solutionId', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
 
+app.get('/:solutionId/edit', (req, res) => {
+  return res.sendFile(path.resolve(__dirname, '../../index.html'));
+});
+app.get('/src/client/styles.css', (req, res) => {
+  res.set('Content-Type', 'text/css')
+  return res.sendFile(path.resolve(__dirname, '../../src/client/styles.css'));
+});
+
 server.listen(3000, () => {
   console.log('listening at http://localhost:3000');
 });

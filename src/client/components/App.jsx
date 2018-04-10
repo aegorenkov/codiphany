@@ -4,6 +4,7 @@ import Header from './Header.jsx';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage.jsx';
 import SolutionPage from './SolutionPage.jsx';
+import EditPage from './EditPage.jsx';
 
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path ='/' component={HomePage} />
-          <Route path ='/:solutionId' component={SolutionPage} />
+          <Route exact path ='/:solutionId' component={SolutionPage} />
+          <Route path ='/:solutionId/edit' component={EditPage} />
         </Switch>
       </div>
     );
