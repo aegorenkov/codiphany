@@ -32,6 +32,9 @@ app.post('/solution', solutionController.createSolution);
 app.put('/solution', solutionController.updateSolution);
 app.delete('/solution', solutionController.deleteSolution);
 
+app.get('/:solutionId', (req, res) => {
+  return res.sendFile(path.resolve(__dirname, '../../index.html'));
+});
 
 server.listen(3000, () => {
   console.log('listening at http://localhost:3000');

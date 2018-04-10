@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import SolutionCard from './SolutionCard.jsx';
+import { Link } from 'react-router-dom';
 
 function fetchSolutions() {
   return fetch('/solutions')
     .then(response => response.json());
 }
 
-class Home extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {solutions:[]}
   }
-  componentWillMount() {
+  componentDidMount() {
     fetchSolutions().then((solutions) => {
       this.setState({solutions})
     });
@@ -19,12 +20,18 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.state.solutions.map(({ _id, title, description }) => {
-          return <SolutionCard key={_id} title={title} description={description} />
+        {this.state.solutions.map(({ _id, title, description }, idx) => {
+          return (
+          <div>
+          <Link key={idx} to={`/${_id}`} >
+            <SolutionCard key={_id} title={title} description={description}/>
+          </Link>
+          </div>
+          )
         })}
       </div>
     )
   }
 }
 
-export default Home;
+export default HomePage;
