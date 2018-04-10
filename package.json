@@ -1,0 +1,29 @@
+{
+  "name": "codiphany",
+  "version": "0.0.0",
+  "description": "Tech solution micro-blogs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "webpack": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^3.19.0",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "webpack": "^4.5.0"
+  }
+}
