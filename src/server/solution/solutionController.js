@@ -1,12 +1,15 @@
 const solution = require('./solutionModel');
+const user = require('../user/userModel');
 
 const solutionController = {};
 //TODO: Input should be sanitized
 
 solutionController.createSolution = (req, res) => {
-  solution.create(req.body, (err, result) => {
-    if (err) console.log(err);
-    return res.json(result);
+  user.findOne({username: req.session.user}, (err, resUser) => {
+    resUser.createPost(req.body, (err, result) => {
+      if (err) console.log(err);
+      return res.json(result);
+    });
   })
 };
 
@@ -19,10 +22,14 @@ solutionController.getSolution = (req, res) => {
 };
 
 solutionController.getSolutions = (req, res) => {
-  solution.find({}, (err, result) => {
+  user.findOne({username: req.query.username}, (err, resUser) => {
     if (err) console.log(err);
-    return res.json(result);
-  })
+    if (!resUser) return res.json([]);
+    resUser.getSolutions((err, result) => {
+      if (err) console.log(err);
+      return res.json(result);
+    });
+  });
 };
 
 solutionController.updateSolution = (req, res) => {
@@ -35,9 +42,11 @@ solutionController.updateSolution = (req, res) => {
 
 solutionController.deleteSolution = (req, res) => {
   const id = req.query.id
-  solution.remove({_id: id}, (err, result) => {
-    if (err) console.log(err);
-    return res.json(result);
+  user.findOne({username: 'test'}, (err, resUser) => {
+    resUser.deletePost(id, (err, result) => {
+      if (err) console.log(err);
+      return res.json(result);
+    })
   })
 };
 

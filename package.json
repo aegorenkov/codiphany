@@ -4,8 +4,9 @@
   "description": "Tech solution micro-blogs.",
   "main": "src/server/server.js",
   "scripts": {
+    "prod": "export NODE_ENV=production; nodemon server/server.js",
     "start": "export NODE_ENV=development; nodemon server/server.js",
-    "test": "npm test",
+    "test": "export NODE_ENV=test && mocha --timeout 8000 test/",
     "webpack": "webpack --watch"
   },
   "author": "",
@@ -16,8 +17,10 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "eslint": "^4.19.1",
+    "expect": "^22.4.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "mocha": "^5.0.5",
     "mongoose": "^5.0.14",
     "node-oauth": "^0.1.3",
     "react-router-dom": "^4.2.2",

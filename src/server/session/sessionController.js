@@ -24,7 +24,6 @@ sessionController.isLoggedIn = (req, res, next) => {
 */
 sessionController.startSession = (req, res, next) => {
   req.session.user = res.locals.user
-  next();
 };
 
 module.exports = sessionController;

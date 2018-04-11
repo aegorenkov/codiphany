@@ -12,7 +12,6 @@ const userController = {};
  * @param res - http.ServerResponse
  */
 userController.verifyUser = (req, res, next) => {
-  const username = 'test';
   const CLIENT_ID = process.env.CLIENT_ID;
   const CLIENT_SECRET = process.env.CLIENT_SECRET;
   request.post(`https://github.com/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${req.query.code}`,
@@ -28,22 +27,23 @@ userController.verifyUser = (req, res, next) => {
       method: 'POST'
     }, (err, httpResponse, body) => {
       console.log('user info', body);
-      const username = body.login;
+      const username = JSON.parse(body).login;
+      console.log('username', username);
+      User.findOne({username}, (err, result) => {
+        if (err) return res.redirect(`/`);
+        if (result === null) {
+          User.create({username: username, accessToken: accessToken, solutions: []}, (err, result) => {
+            if (err) console.log(err);
+            res.locals.user = result.username;
+            next();
+            return res.redirect(`/${username}`);
+          })     
+        } else {
+          req.session.user = result.username;
+          return res.redirect(`/${username}`);
+        }
+      });
     })
-    User.findOne({accessToken}, (err, result) => {
-      if (err) return res.redirect('/');
-      if (result === null) {
-        User.create({username: username, accessToken: accessToken}, (err, result) => {
-          if (err) console.log(err);
-          res.locals.user = result.username;
-          next();
-          return res.redirect('/');
-        })     
-      } else {
-        req.session.user = result.username;
-        return res.redirect('/');
-      }
-    });
   })
 };
 
