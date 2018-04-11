@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SolutionCard from './SolutionCard.jsx';
 import { Link } from 'react-router-dom';
+import Header from './Header.jsx';
+
 
 function fetchSolutions() {
   return fetch('/solutions')
@@ -20,6 +22,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
+      <Header />
         {this.state.solutions.map(({ _id, title, description }, idx) => {
           return (
           <div>

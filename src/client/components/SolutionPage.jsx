@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from './Header.jsx';
+
 
 function fetchSolution(id) {
   return fetch(`/solution?id=${id}`)
@@ -24,6 +26,7 @@ class SolutionPage extends Component {
     const { title, description, resources, code } = this.state;
     return (
       <div>
+      <Header solutionId={this.props.match.params.solutionId}/>
         <h1>{title}</h1>
         <p>{description}</p>
         <p>{resources}</p>

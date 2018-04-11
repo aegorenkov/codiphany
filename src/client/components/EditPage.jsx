@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Header from './Header.jsx';
+
 
 function fetchSolution(id) {
   return fetch(`/solution?id=${id}`)
@@ -54,6 +56,7 @@ class EditPage extends Component {
     const { title, description, resources, code } = this.state;
     return (
       <div>
+      <Header solutionId={false}/>
         <h1 contentEditable="true" onBlur={this.updateTitle}>{title}</h1>
         <p contentEditable="true" onBlur={this.updateDescription}>{description}</p>
         <p contentEditable="true" onBlur={this.updateResources}>{resources}</p>

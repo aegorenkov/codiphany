@@ -27,7 +27,6 @@ solutionController.getSolutions = (req, res) => {
 
 solutionController.updateSolution = (req, res) => {
   const id = req.query.id
-  console.log(req.body);
   solution.findOneAndUpdate({_id: id}, {$set: req.body}, {new: true}, (err, doc) => {
     if (err) console.log(err);
     res.json(doc);
