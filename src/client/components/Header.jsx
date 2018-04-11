@@ -21,7 +21,9 @@ class Header extends Component {
         <nav className="my-md-0 mr-md-3">
         { this.props.solutionId && this.state.user ? <Link to={`/${this.props.solutionId}/edit`}>edit</Link> : null}
         </nav>
-        { this.state.user ? this.state.user : <a className="btn btn-outline-primary" href="#">Login with GitHub</a> }
+        { this.state.user 
+          ? this.state.user 
+          : <a className="btn btn-outline-primary" href="https://github.com/login/oauth/authorize?client_id=bc880267139956469292">Login with GitHub</a> }
       </div>
     );
   }
