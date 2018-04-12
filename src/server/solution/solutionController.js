@@ -42,7 +42,7 @@ solutionController.updateSolution = (req, res) => {
 
 solutionController.deleteSolution = (req, res) => {
   const id = req.query.id
-  user.findOne({username: 'test'}, (err, resUser) => {
+  user.findOne({username: req.session.user}, (err, resUser) => {
     resUser.deletePost(id, (err, result) => {
       if (err) console.log(err);
       return res.json(result);

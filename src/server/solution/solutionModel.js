@@ -6,6 +6,7 @@ const solutionSchema = new Schema({
   description: String,
   resources: String,
   code: String,
+  created: Date
 });
 
 module.exports = mongoose.model('Solution', solutionSchema);

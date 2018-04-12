@@ -9,7 +9,7 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.createPost = function (postInfo, cb) {
-  solution.create(postInfo, (err, sol) => {
+  solution.create(Object.assign(postInfo, {created: new Date()}), (err, sol) => {
     if (err) console.log(err);
     if (sol._id) this.solutions.push(sol._id);
     this.save((err) => {
@@ -31,11 +31,12 @@ userSchema.methods.deletePost = function(postId, cb) {
 
 userSchema.methods.getSolutions = function (cb) {
   solution.find({
-    '_id': { $in: this.solutions.map((elem) => mongoose.Types.ObjectId(elem))}
-  }, (err, result) => {
-    if (err) console.log(err);
-    cb(err, result);
-  });
+    '_id': { $in: this.solutions.map((elem) => mongoose.Types.ObjectId(elem))},
+  }).sort({created: 'desc'})
+    .exec((err, result) => {
+      if (err) console.log(err);
+      cb(err, result);
+    });
 }
 
 module.exports = mongoose.model('User', userSchema);

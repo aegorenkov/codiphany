@@ -54,9 +54,10 @@ class EditPage extends Component {
   }
   render() {
     const { title, description, resources, code } = this.state;
+    console.log('edit', this.props.history);
     return (
       <div>
-      <Header solutionId={false}/>
+      <Header solutionId={this.props.match.params.solutionId} mode="edit" history={this.props.history}/>
         <h1 contentEditable="true" onBlur={this.updateTitle}>{title}</h1>
         <p contentEditable="true" onBlur={this.updateDescription}>{description}</p>
         <p contentEditable="true" onBlur={this.updateResources}>{resources}</p>

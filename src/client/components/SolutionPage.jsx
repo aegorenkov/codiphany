@@ -26,7 +26,7 @@ class SolutionPage extends Component {
     const { title, description, resources, code } = this.state;
     return (
       <div>
-      <Header solutionId={this.props.match.params.solutionId}/>
+      <Header solutionId={this.props.match.params.solutionId} mode='view'/>
         <h1>{title}</h1>
         <p>{description}</p>
         <p>{resources}</p>

@@ -39,9 +39,9 @@ app.use(cookieParser());
 
 app.get('/solutions', solutionController.getSolutions);
 app.get('/solution', solutionController.getSolution);
-app.post('/solution', solutionController.createSolution);
-app.put('/solution', solutionController.updateSolution);
-app.delete('/solution', solutionController.deleteSolution);
+app.post('/solution', sessionController.isLoggedIn, solutionController.createSolution);
+app.put('/solution', sessionController.isLoggedIn, solutionController.updateSolution);
+app.delete('/solution', sessionController.isLoggedIn, solutionController.deleteSolution);
 app.get('/', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
@@ -70,19 +70,21 @@ app.get('/src/client/styles.css', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../../src/client/styles.css'));
 });
 
+app.get('/:solutionId/edit', (req, res) => {
+  return res.sendFile(path.resolve(__dirname, '../../index.html'));
+});
+
 app.get('/:username', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
+
 
 app.get('/:username/:solutionId', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
 
-app.get('/:username/:solutionId/edit', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, '../../index.html'));
-});
 
-server.listen(3000, () => {
+server.listen(3000, '0.0.0.0', () => {
   console.log('listening at http://localhost:3000');
 });
 
